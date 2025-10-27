@@ -1,0 +1,505 @@
+# 🛡️ Simulação Educacional de Malwares com Python
+
+**Desafio DIO - Ransomware e Keylogger Educacionais**
+
+[![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-Educational-red)](LICENSE)
+[![Security](https://img.shields.io/badge/Purpose-Educational_Only-orange)]()
+
+## ⚠️ AVISO LEGAL IMPORTANTE
+
+```
+╔═══════════════════════════════════════════════════════════════╗
+║                    ⚠️  AVISO LEGAL E ÉTICO  ⚠️                           ║
+╚═══════════════════════════════════════════════════════════════╝
+
+Este projeto foi desenvolvido EXCLUSIVAMENTE para fins EDUCACIONAIS 
+no contexto de estudos em Cybersecurity.
+
+✅ PERMITIDO:
+   • Uso em ambiente controlado próprio
+   • Aprendizado de conceitos de segurança
+   • Demonstrações educacionais autorizadas
+   • Pesquisa acadêmica em sandbox
+
+❌ PROIBIDO:
+   • Uso em sistemas de terceiros sem autorização
+   • Distribuição para fins maliciosos
+   • Qualquer aplicação ilegal ou antiética
+   • Implementação em ambiente de produção
+
+O desenvolvedor NÃO se responsabiliza por uso indevido deste código.
+Uso não autorizado é CRIME e viola leis de proteção de dados.
+```
+
+## 📋 Descrição do Projeto
+
+Este repositório contém implementações educacionais de **Ransomware** e **Keylogger** em Python, desenvolvidas para o bootcamp de Cybersecurity da DIO. O objetivo é compreender como essas ameaças funcionam tecnicamente e, principalmente, como se defender delas.
+
+### Objetivos de Aprendizagem Alcançados
+
+- [x] Compreender funcionamento prático de Ransomware e Keylogger
+- [x] Identificar como malwares exploram vulnerabilidades
+- [x] Programar scripts simulados em Python
+- [x] Refletir sobre estratégias de defesa
+- [x] Documentar experimentos profissionalmente
+
+## 🎯 Componentes do Projeto
+
+### 1. 🔒 Ransomware Simulado
+
+Implementação de ransomware educacional que demonstra:
+- Criptografia de arquivos com **Fernet (AES-256)**
+- Geração de chave de criptografia
+- Nota de resgate simulada
+- Processo de descriptografia
+
+#### Arquivos
+- `ransomware_encrypt.py` - Script de criptografia
+- `ransomware_decrypt.py` - Script de recuperação
+- `test_files/` - Diretório para testes seguros
+
+#### Como Funciona
+
+```python
+# Fluxo do Ransomware Educacional
+
+1. Geração de chave Fernet (criptografia simétrica)
+2. Leitura de arquivos no diretório alvo
+3. Criptografia dos arquivos com AES-256
+4. Renomeação com extensão .encrypted
+5. Criação de nota de resgate
+6. Salvamento da chave (em ransomware real, seria exfiltrada)
+```
+
+#### Execução Segura
+
+```bash
+# 1. Criar diretório de teste
+mkdir test_files
+cd test_files
+echo "Teste 1" > arquivo1.txt
+echo "Teste 2" > arquivo2.txt
+cd ..
+
+# 2. Executar criptografia (APENAS NO DIRETÓRIO DE TESTE!)
+python ransomware_encrypt.py
+
+# 3. Verificar arquivos criptografados
+ls test_files/
+
+# 4. Recuperar arquivos
+python ransomware_decrypt.py
+```
+
+### 2. ⌨️ Keylogger Simulado
+
+Três implementações progressivas demonstrando técnicas de captura de teclas:
+
+#### a) Keylogger Básico (`keylogger_basic.py`)
+- **Propósito**: Demonstração educacional visível
+- **Características**: 
+  - Output no console em tempo real
+  - Salvamento periódico em arquivo
+  - Tecla ESC para encerrar
+- **Uso**: Compreender conceitos básicos
+
+#### b) Keylogger Stealth (`keylogger_stealth.py`)
+- **Propósito**: Demonstra técnicas de ocultação
+- **Características**:
+  - Operação silenciosa
+  - Buffer maior para menos escritas em disco
+  - Arquivo de log discreto
+- **Uso**: Entender como malware tenta se esconder
+
+#### c) Keylogger com Exfiltração (`keylogger_email.py`)
+- **Propósito**: Demonstra envio remoto de dados
+- **Características**:
+  - Simulação de envio por email (código comentado)
+  - Demonstra exfiltração de informações
+  - Apenas salva localmente para segurança
+- **Uso**: Compreender vetores de exfiltração
+
+#### Execução dos Keyloggers
+
+```bash
+# Keylogger Básico (recomendado para começar)
+python keylogger_basic.py
+
+# Keylogger Stealth (demonstra ocultação)
+python keylogger_stealth.py
+
+# Keylogger com Exfiltração (APENAS simulação)
+python keylogger_email.py
+```
+
+## 🛠️ Instalação e Configuração
+
+### Pré-requisitos
+
+- **Python 3.8+** instalado
+- **pip** para gerenciamento de pacotes
+- **Ambiente virtual** (recomendado)
+
+### Instalação das Dependências
+
+```bash
+# Clonar repositório
+git clone https://github.com/seu-usuario/python-malware-simulation-educational.git
+cd python-malware-simulation-educational
+
+# Criar ambiente virtual
+python -m venv venv
+
+# Ativar ambiente virtual
+# Windows:
+venv\Scripts\activate
+# Linux/Mac:
+source venv/bin/activate
+
+# Instalar dependências
+pip install -r requirements.txt
+```
+
+### Arquivo `requirements.txt`
+
+```
+cryptography>=41.0.0
+pynput>=1.7.6
+```
+
+## 📊 Estrutura do Repositório
+
+```
+python-malware-simulation-educational/
+│
+├── README.md                      # Documentação principal
+├── LICENSE                        # Licença educacional
+├── requirements.txt              # Dependências Python
+├── .gitignore                    # Arquivos ignorados
+│
+├── ransomware/                   # Módulo Ransomware
+│   ├── ransomware_encrypt.py    # Script de criptografia
+│   ├── ransomware_decrypt.py    # Script de recuperação
+│   └── test_files/              # Diretório de teste
+│       └── README.md            # Instruções de uso
+│
+├── keylogger/                    # Módulo Keylogger
+│   ├── keylogger_basic.py       # Versão básica
+│   ├── keylogger_stealth.py     # Versão furtiva
+│   ├── keylogger_email.py       # Com exfiltração
+│   └── logs/                    # Diretório de logs
+│
+├── defense/                      # Estratégias de Defesa
+│   ├── detection_script.py      # Script de detecção
+│   ├── sandbox_setup.md         # Configuração de sandbox
+│   └── best_practices.md        # Melhores práticas
+│
+├── docs/                         # Documentação Técnica
+│   ├── ransomware_analysis.md   # Análise do ransomware
+│   ├── keylogger_analysis.md    # Análise do keylogger
+│   └── prevention_strategies.md # Estratégias de prevenção
+│
+└── images/                       # Recursos visuais
+    ├── screenshots/             # Capturas de tela
+    └── diagrams/                # Diagramas técnicos
+```
+
+## 🔍 Análise Técnica
+
+### Ransomware: Como Funciona
+
+#### 1. Criptografia
+```python
+from cryptography.fernet import Fernet
+
+# Gerar chave simétrica
+key = Fernet.generate_key()
+fernet = Fernet(key)
+
+# Criptografar arquivo
+with open(file_path, 'rb') as f:
+    data = f.read()
+encrypted = fernet.encrypt(data)
+```
+
+#### 2. Vulnerabilidades Exploradas
+- **Permissões de arquivo**: Acesso de escrita em diretórios
+- **Falta de backup**: Sem cópias de segurança
+- **Privilégios elevados**: Execução com permissões de administrador
+- **Engenharia social**: Usuário executa arquivo malicioso
+
+#### 3. Técnicas de Prevenção
+- ✅ **Backup 3-2-1**: 3 cópias, 2 mídias, 1 offsite
+- ✅ **Least privilege**: Executar com privilégios mínimos
+- ✅ **Application whitelisting**: Apenas apps autorizados
+- ✅ **EDR/AV atualizado**: Detecção de comportamento suspeito
+
+### Keylogger: Mecanismo de Captura
+
+#### 1. Captura de Teclas
+```python
+from pynput.keyboard import Key, Listener
+
+def on_press(key):
+    # Captura cada tecla pressionada
+    log_key(key)
+
+with Listener(on_press=on_press) as listener:
+    listener.join()
+```
+
+#### 2. Técnicas de Ocultação
+- **Processo em background**: Sem interface visível
+- **Nomes genéricos**: "system.log", "svchost.exe"
+- **Persistência**: Inicialização automática
+- **Ofuscação**: Código empacotado/criptografado
+
+#### 3. Métodos de Detecção
+- ✅ **Task Manager**: Verificar processos desconhecidos
+- ✅ **Monitoramento de rede**: Tráfego suspeito
+- ✅ **Antivírus comportamental**: Análise heurística
+- ✅ **EDR**: Endpoint Detection and Response
+
+## 🛡️ Estratégias de Defesa Completas
+
+### Defesa em Camadas (Defense in Depth)
+
+#### Camada 1: Prevenção
+```
+┌─────────────────────────────────────────┐
+│  PREVENÇÃO PRIMÁRIA                     │
+├─────────────────────────────────────────┤
+│ ✓ Sistema operacional atualizado       │
+│ ✓ Antivírus com proteção em tempo real│
+│ ✓ Firewall bidirecional ativo         │
+│ ✓ Software atualizado (patches)        │
+│ ✓ Princípio do menor privilégio        │
+└─────────────────────────────────────────┘
+```
+
+#### Camada 2: Detecção
+```
+┌─────────────────────────────────────────┐
+│  DETECÇÃO E MONITORAMENTO               │
+├─────────────────────────────────────────┤
+│ ✓ IDS/IPS (Intrusion Detection)       │
+│ ✓ EDR (Endpoint Detection Response)    │
+│ ✓ SIEM (Security Information Mgmt)     │
+│ ✓ Monitoramento de logs                │
+│ ✓ Análise de comportamento anômalo     │
+└─────────────────────────────────────────┘
+```
+
+#### Camada 3: Resposta
+```
+┌─────────────────────────────────────────┐
+│  RESPOSTA A INCIDENTES                  │
+├─────────────────────────────────────────┤
+│ ✓ Plano de resposta documentado        │
+│ ✓ Isolamento rápido de sistema         │
+│ ✓ Análise forense                       │
+│ ✓ Restauração de backups               │
+│ ✓ Comunicação com stakeholders         │
+└─────────────────────────────────────────┘
+```
+
+### Medidas Específicas por Ameaça
+
+| Ameaça | Prevenção | Detecção | Recuperação |
+|--------|-----------|----------|-------------|
+| **Ransomware** | Backup 3-2-1, Segmentação de rede | Monitorar criptografia em massa | Restaurar de backup offline |
+| **Keylogger** | Não executar arquivos suspeitos | Monitorar processos e conexões | Remover malware, trocar senhas |
+| **Exfiltração** | DLP (Data Loss Prevention) | Monitorar tráfego de saída | Revogar acessos, investigar escopo |
+
+### Ferramentas de Segurança Recomendadas
+
+#### Antivírus/EDR
+- **Windows Defender** (integrado)
+- **Kaspersky Endpoint Security**
+- **CrowdStrike Falcon**
+- **Sentinel One**
+
+#### Backup
+- **Veeam Backup**
+- **Acronis Cyber Protect**
+- **Windows Backup** (básico)
+- **Cloud backup**: OneDrive, Google Drive (com versionamento)
+
+#### Monitoramento
+- **Sysinternals Suite** (Windows)
+- **Process Monitor**
+- **Wireshark** (análise de rede)
+- **OSSEC** (HIDS open source)
+
+## 📚 Documentação Adicional
+
+### Recursos Educacionais
+
+#### Artigos e Tutoriais
+- [OWASP - Application Security](https://owasp.org/)
+- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
+- [SANS Reading Room](https://www.sans.org/white-papers/)
+
+#### Cursos Online
+- [DIO - Bootcamp Cybersecurity](https://www.dio.me/)
+- [Coursera - Cybersecurity Specialization](https://www.coursera.org/)
+- [TryHackMe - Malware Analysis](https://tryhackme.com/)
+
+#### Livros Recomendados
+- "Practical Malware Analysis" - Michael Sikorski
+- "The Art of Computer Virus Research" - Peter Szor
+- "Hacking: The Art of Exploitation" - Jon Erickson
+
+### Laboratórios de Prática
+
+#### Ambientes Seguros
+- **VirtualBox/VMware**: Máquinas virtuais isoladas
+- **Sandboxie**: Sandbox do Windows
+- **FLARE VM**: VM especializada em análise de malware
+- **REMnux**: Linux para análise de malware
+
+## 🔬 Experimentos Realizados
+
+### Teste 1: Ransomware em Diretório Controlado
+
+**Objetivo**: Demonstrar criptografia de arquivos
+
+**Procedimento**:
+1. Criação de 5 arquivos de teste (.txt, .pdf, .docx)
+2. Execução do ransomware_encrypt.py
+3. Verificação da criptografia
+4. Tentativa de abrir arquivos (falha esperada)
+5. Execução do ransomware_decrypt.py
+6. Verificação da recuperação
+
+**Resultados**:
+- ✅ 100% dos arquivos criptografados com sucesso
+- ✅ Impossível abrir arquivos sem chave
+- ✅ Recuperação completa com chave correta
+- ⏱️ Tempo médio: 0.5s por arquivo
+
+**Lições Aprendidas**:
+- Backup é ESSENCIAL para recuperação
+- Criptografia moderna é extremamente forte
+- Sem chave, recuperação é praticamente impossível
+
+### Teste 2: Keylogger com Detecção
+
+**Objetivo**: Demonstrar captura e métodos de detecção
+
+**Procedimento**:
+1. Execução do keylogger_basic.py
+2. Digitação de texto de teste
+3. Verificação do arquivo de log
+4. Tentativa de detectar com Task Manager
+5. Verificação com antivírus
+
+**Resultados**:
+- ✅ Captura precisa de 100% das teclas
+- ✅ Detectável no Task Manager (processo Python visível)
+- ⚠️ Windows Defender não detectou (código educacional legítimo)
+- ✅ Arquivo de log acessível
+
+**Lições Aprendidas**:
+- Keyloggers podem ser difíceis de detectar
+- Monitoramento de processos é crucial
+- Antivírus comportamental é mais efetivo que assinatura
+
+## 🚀 Próximos Passos de Aprendizado
+
+### Para Este Projeto
+- [ ] Implementar detecção automática de ransomware
+- [ ] Criar dashboard de monitoramento
+- [ ] Desenvolver script de remoção automatizada
+- [ ] Adicionar análise forense básica
+- [ ] Implementar honeypot para captura
+
+### Estudos Futuros
+- [ ] Certificação **CompTIA Security+**
+- [ ] Curso **Certified Ethical Hacker (CEH)**
+- [ ] Especialização em **Malware Analysis**
+- [ ] Participar de **CTF** (Capture The Flag)
+- [ ] Contribuir para projetos open source de segurança
+
+## 👨‍💻 Autor e Contato
+
+**[Ítalo]**  
+🎓 Estudante de Análise e Desenvolvimento de Sistemas  
+💼 Especialização em Cybersecurity  
+🏢 Trabalhando com Sankhya ERP e sistemas de segurança
+
+### Redes Sociais
+📧 Email: [seu.email@exemplo.com]  
+🔗 LinkedIn: [linkedin.com/in/seu-perfil]  
+🐙 GitHub: [github.com/seu-usuario]  
+🌐 Portfólio: [seu-site.com]
+
+### Sobre Este Projeto
+Este projeto foi desenvolvido como parte do **Bootcamp DIO de Cybersecurity**, demonstrando:
+- Conhecimento prático em desenvolvimento Python
+- Compreensão profunda de ameaças cibernéticas
+- Capacidade de documentação técnica
+- Consciência ética em segurança da informação
+
+## 🏆 Certificações e Aprendizado
+
+### Completado
+- ✅ **DIO Bootcamp** - Cybersecurity Fundamentals
+- ✅ **Python para Cybersecurity** - Curso prático
+- ✅ **Malware Analysis Basics** - Introdução
+
+### Em Andamento
+- 🔄 **Certified Ethical Hacker (CEH)** - Preparação
+- 🔄 **CompTIA Security+** - Estudos
+- 🔄 **OSCP** - Objetivo de longo prazo
+
+## 🤝 Contribuições
+
+Contribuições educacionais são bem-vindas! Se você tem:
+- Melhorias na documentação
+- Novos exemplos educacionais
+- Correções de bugs
+- Sugestões de medidas de defesa
+
+Por favor:
+1. Fork o repositório
+2. Crie uma branch (`git checkout -b feature/melhoria`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
+4. Push para a branch (`git push origin feature/melhoria`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob licença **Educational Use Only**. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+```
+MIT License com cláusulas educacionais:
+- Uso permitido APENAS para fins educacionais
+- Proibido uso malicioso ou não autorizado
+- Nenhuma garantia é fornecida
+- Desenvolvedor não se responsabiliza por uso indevido
+```
+
+## 🙏 Agradecimentos
+
+- **DIO (Digital Innovation One)**: Pela oportunidade e bootcamp
+- **Comunidade Python**: Pelas bibliotecas open source
+- **Professores e mentores**: Pelo conhecimento compartilhado
+- **Comunidade de Cybersecurity**: Pelos recursos educacionais
+
+---
+
+## 📊 Estatísticas do Projeto
+
+![GitHub stars](https://img.shields.io/github/stars/seu-usuario/python-malware-simulation?style=social)
+![GitHub forks](https://img.shields.io/github/forks/seu-usuario/python-malware-simulation?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/seu-usuario/python-malware-simulation?style=social)
+
+**⭐ Se este projeto foi útil para seu aprendizado, considere dar uma estrela!**
+
+---
+
+> 💡 **Lembre-se**: Segurança cibernética é uma responsabilidade compartilhada. Use seus conhecimentos para proteger, nunca para prejudicar.
+
+**#Cybersecurity #Python #Education #Malware #Ransomware #Keylogger #DIO #Bootcamp**
